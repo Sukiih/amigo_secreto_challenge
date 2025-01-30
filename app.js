@@ -43,5 +43,15 @@ function mostrarAmigo() {
 }
 
 function sortearAmigo() {
-    mostrarAmigo()
+    //verificando que la lista no este vacia
+    if(amigos.length === 0) {
+        alert('No hay amigos para sortear.')
+        return
+    }
+    // se crea yba constante para obtener un amigo aleatorio
+    const amigoSecreto = Math.floor(Math.random() * amigos.length)
+    //obtenemos el amigo
+    const amigoSorteado = amigos[amigoSecreto]
+    const resultado = document.getElementById('resultado')
+    resultado.textContent = `El amigo secreto es: ${amigoSorteado}`
 }
