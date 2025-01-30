@@ -1,27 +1,47 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
-
 let amigos = []
 
+//actualizar lista de amigos
+function actualizarLista() {
+    const amigoSecreto = document.getElementById('listaAmigos')
+    amigoSecreto.innerHTML = '' // Limpiar la lista antes de mostrarla
+
+    // Aquí recorremos el array y agregamos a los amigos
+    amigos.forEach(amigo => {
+        const li = document.createElement('li')
+        li.textContent = amigo
+        amigoSecreto.appendChild(li)
+    })
+}
+
+// Función para agregar amigo
 function agregarAmigo() {
-    const inputAmigo= document.getElementById('amigo')
-    // Con trim se quitan los espacios al principio y final
-    const amigo = inputAmigo.value.trim() 
-    //verificamos que no este vacio el campo
+    const inputAmigo = document.getElementById('amigo')
+    const amigo = inputAmigo.value.trim()
+    //validamos que no este vacio
     if (amigo === '') {
         alert('Por favor ingresa un nombre.')
-
-        //agregue un borde rojo al input vacio para que el usuario vea que es necesario ingresar un nombre
+        //agregue un estilo visual para que el usuario vea que el campo esta vacio
         inputAmigo.style.border = '2px solid red'
         return
     }
-    inputAmigo.style.border = ''
-    //actualizando el array
-    amigos.push(amigo)
-    //Se limpia el campo
-    inputAmigo.value = ''
+    //verificacion para que no se repitan los nombres de los amigos
+    if (amigos.includes(amigo)) {
+        alert('El amigo ya se encuentra en la lista.')
+        return
+    }
 
-    // Crear nuevo li y agregarlo a la lista
-    const li = document.createElement('li')
-    li.textContent = amigo
-    document.getElementById('listaAmigos').appendChild(li)
+    inputAmigo.style.border = ''
+    amigos.push(amigo) 
+    //limpiamos el campo del input
+    inputAmigo.value = '' 
+
+    actualizarLista()
+}
+
+function mostrarAmigo() {
+    actualizarLista()
+}
+
+function sortearAmigo() {
+    mostrarAmigo()
 }
