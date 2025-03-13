@@ -38,6 +38,15 @@ function agregarAmigo() {
     actualizarLista()
 }
 
+//Agregue un evento para que tambien se agregen amigos al presionar enter
+const inputAmigo = document.getElementById('amigo')
+inputAmigo.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        //aca se esta llamando la funcion
+        agregarAmigo()
+    }
+})
+
 function mostrarAmigo() {
     actualizarLista()
 }
